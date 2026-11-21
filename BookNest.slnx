@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="BookNest.Application/BookNest.Application.csproj" />
+  <Project Path="BookNest.Domain/BookNest.Domain.csproj" />
+  <Project Path="BookNest.Infrastructure/BookNest.Infrastructure.csproj" />
+  <Project Path="BookNest.Web/BookNest.Web.csproj" />
+</Solution>
