@@ -1,4 +1,5 @@
 ﻿
+using BookNest.Domain.Entities;
 using BookNest.Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -6,17 +7,22 @@ using Microsoft.EntityFrameworkCore;
 namespace BookNest.Infrastructure.Persistence;
 
 /// <summary>
-/// Represents the database context for the BookNest application.
+/// Represents the application's database context.
 /// </summary>
 public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
 {
-    /// <summary>
-    /// Initializes a new instance of the ApplicationDbContext.
-    /// </summary>
-    /// <param name="options">The database context configuration options.</param>
-    public ApplicationDbContext(
-        DbContextOptions<ApplicationDbContext> options)
+    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
         : base(options)
     {
+    }
+
+    public DbSet<Category> Categories => Set<Category>();
+
+    protected override void OnModelCreating(ModelBuilder builder)
+    {
+        base.OnModelCreating(builder);
+
+        builder.ApplyConfigurationsFromAssembly(
+            typeof(ApplicationDbContext).Assembly);
     }
 }

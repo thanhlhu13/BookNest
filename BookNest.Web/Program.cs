@@ -3,11 +3,14 @@ using BookNest.Infrastructure;
 using BookNest.Infrastructure.Identity;
 using BookNest.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Identity;
+using BookNest.Application;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddApplication();
 
 // Register Infrastructure services.
 builder.Services.AddInfrastructure(builder.Configuration);
