@@ -6,6 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+
   <ItemGroup>
     <ProjectReference Include="..\BookNest.Application\BookNest.Application.csproj" />
     <ProjectReference Include="..\BookNest.Infrastructure\BookNest.Infrastructure.csproj" />
@@ -15,6 +16,7 @@
     <Folder Include="Extensions\" />
     <Folder Include="ViewModels\" />
   </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.15">

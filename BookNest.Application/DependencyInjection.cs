@@ -13,6 +13,8 @@ public static class DependencyInjection
         this IServiceCollection services)
     {
         services.AddScoped<ICategoryService, CategoryService>();
+        services.AddScoped<IBookService, BookService>();
+        services.AddScoped<IBookCopyService, BookCopyService>();
 
         return services;
     }

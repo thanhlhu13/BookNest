@@ -42,6 +42,20 @@
                                        asp-controller="Admin"
                                        asp-action="Index">Admin Dashboard</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark"
+                                       asp-controller="Book"
+                                       asp-action="Index">
+                                        Book Management
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark"
+                                       asp-controller="BookCopy"
+                                       asp-action="Index">
+                                        Book Copy Management
+                                    </a>
+                                </li>
                             }
                             else if (User.IsInRole("Customer"))
                             {

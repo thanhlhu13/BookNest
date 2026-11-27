@@ -1,0 +1,48 @@
+﻿
+@model BookNest.Application.DTOs.BookCopy.BookCopyDto
+
+@{
+    ViewData["Title"] = "Book Copy Details";
+}
+
+<h2>Book Copy Details</h2>
+
+<hr />
+
+<div class="row">
+    <div class="col-md-6">
+        <dl class="row">
+            <dt class="col-sm-4">ID</dt>
+            <dd class="col-sm-8">@Model.Id</dd>
+
+            <dt class="col-sm-4">Book</dt>
+            <dd class="col-sm-8">@Model.BookTitle</dd>
+
+            <dt class="col-sm-4">Copy Code</dt>
+            <dd class="col-sm-8">@Model.CopyCode</dd>
+
+            <dt class="col-sm-4">Status</dt>
+            <dd class="col-sm-8">@Model.Status</dd>
+
+            <dt class="col-sm-4">Created At</dt>
+            <dd class="col-sm-8">
+                @Model.CreatedAt.ToLocalTime().ToString("yyyy-MM-dd HH:mm")
+            </dd>
+
+            <dt class="col-sm-4">Updated At</dt>
+            <dd class="col-sm-8">
+                @(Model.UpdatedAt?.ToLocalTime().ToString("yyyy-MM-dd HH:mm") ?? "Not updated")
+            </dd>
+        </dl>
+
+        <a asp-action="Edit"
+           asp-route-id="@Model.Id"
+           class="btn btn-warning">
+            Edit
+        </a>
+
+        <a asp-action="Index" class="btn btn-secondary">
+            Back to List
+        </a>
+    </div>
+</div>

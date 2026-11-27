@@ -27,7 +27,8 @@ public static class DependencyInjection
                 configuration.GetConnectionString("DefaultConnection")));
 
         services.AddScoped<ICategoryRepository, CategoryRepository>();
-        services.AddScoped<ICategoryService, CategoryService>();
+        services.AddScoped<IBookRepository, BookRepository>();
+        services.AddScoped<IBookCopyRepository, BookCopyRepository>();
 
         return services;
     }

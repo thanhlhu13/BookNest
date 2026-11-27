@@ -1,0 +1,61 @@
+﻿
+@model BookNest.Application.DTOs.BookCopy.CreateBookCopyDto
+
+@{
+    ViewData["Title"] = "Create Book Copy";
+}
+
+<h2>Create Book Copy</h2>
+
+<hr />
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Create" method="post">
+            @Html.AntiForgeryToken()
+
+            <div asp-validation-summary="ModelOnly"
+                 class="text-danger mb-3"></div>
+
+            <div class="mb-3">
+                <label asp-for="BookId" class="form-label">Book</label>
+                <select asp-for="BookId"
+                        asp-items="ViewBag.Books"
+                        class="form-select">
+                    <option value="">-- Select Book --</option>
+                </select>
+                <span asp-validation-for="BookId"
+                      class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="CopyCode" class="form-label"></label>
+                <input asp-for="CopyCode" class="form-control"
+                       placeholder="e.g. CC-0001" />
+                <span asp-validation-for="CopyCode"
+                      class="text-danger"></span>
+            </div>
+
+            <div class="alert alert-info">
+                New book copies will automatically have the
+                <strong>Available</strong> status.
+            </div>
+
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary">
+                    Create
+                </button>
+
+                <a asp-action="Index" class="btn btn-secondary">
+                    Back to List
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

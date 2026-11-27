@@ -1,0 +1,55 @@
+﻿
+@using BookNest.Domain.Enums
+@model BookNest.Application.DTOs.BookCopy.UpdateBookCopyDto
+
+@{
+    ViewData["Title"] = "Edit Book Copy";
+}
+
+<h2>Edit Book Copy</h2>
+
+<hr />
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Edit" method="post">
+            @Html.AntiForgeryToken()
+
+            <div asp-validation-summary="ModelOnly"
+                 class="text-danger mb-3"></div>
+
+            <div class="mb-3">
+                <label asp-for="CopyCode" class="form-label"></label>
+                <input asp-for="CopyCode" class="form-control" />
+                <span asp-validation-for="CopyCode"
+                      class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Status" class="form-label"></label>
+                <select asp-for="Status"
+                        asp-items="Html.GetEnumSelectList<BookCopyStatus>()"
+                        class="form-select">
+                </select>
+                <span asp-validation-for="Status"
+                      class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary">
+                    Save Changes
+                </button>
+
+                <a asp-action="Index" class="btn btn-secondary">
+                    Back to List
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
