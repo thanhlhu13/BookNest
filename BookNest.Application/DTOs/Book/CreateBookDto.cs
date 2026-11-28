@@ -30,4 +30,9 @@ public class CreateBookDto
     [Required(ErrorMessage = "Category is required.")]
     [Range(1, int.MaxValue, ErrorMessage = "Please select a valid category.")]
     public int CategoryId { get; set; }
+
+    /// <summary>
+    /// Gets or sets the relative URL of the book cover image.
+    /// </summary>
+    public string? CoverImageUrl { get; set; }
 }

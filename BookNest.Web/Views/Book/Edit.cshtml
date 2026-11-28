@@ -19,7 +19,8 @@
             <div class="card-body p-4">
                 <form asp-action="Edit"
                       asp-route-id="@ViewContext.RouteData.Values["id"]"
-                      method="post">
+                      method="post"
+                      enctype="multipart/form-data">
 
                     @Html.AntiForgeryToken()
 
@@ -72,6 +73,35 @@
                         <input asp-for="Language" class="form-control" />
                         <span asp-validation-for="Language"
                               class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Current Book Cover</label>
+
+                        @if (!string.IsNullOrWhiteSpace(ViewBag.CoverImageUrl as string))
+                        {
+                            <div class="mb-3">
+                                <img src="@ViewBag.CoverImageUrl"
+                                     alt="Book Cover"
+                                     class="rounded shadow-sm"
+                                     style="max-width: 180px; max-height: 250px; object-fit: contain;" />
+                            </div>
+                        }
+                        else
+                        {
+                            <p class="text-muted">No cover image available.</p>
+                        }
+
+                        <label class="form-label">Upload New Cover</label>
+                        <input type="file"
+                               name="CoverImage"
+                               class="form-control"
+                               accept="image/jpeg,image/png,image/webp" />
+
+                        <div class="form-text">
+                            Supported formats: JPG, PNG, WEBP. Maximum size: 5 MB.
+                            Leave empty to keep the current image.
+                        </div>
                     </div>
 
                     <div class="mb-3">

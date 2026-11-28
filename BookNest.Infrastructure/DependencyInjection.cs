@@ -3,6 +3,7 @@ using BookNest.Application.Interfaces;
 using BookNest.Application.Services;
 using BookNest.Infrastructure.Persistence;
 using BookNest.Infrastructure.Repositories;
+using BookNest.Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -29,6 +30,7 @@ public static class DependencyInjection
         services.AddScoped<ICategoryRepository, CategoryRepository>();
         services.AddScoped<IBookRepository, BookRepository>();
         services.AddScoped<IBookCopyRepository, BookCopyRepository>();
+        services.AddScoped<IFileStorageService, FileStorageService>();
 
         return services;
     }

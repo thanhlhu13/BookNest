@@ -1,5 +1,6 @@
 ﻿
 using BookNest.Application.DTOs.Book;
+using BookNest.Application.DTOs.Common;
 
 namespace BookNest.Application.Interfaces;
 
@@ -17,4 +18,9 @@ public interface IBookService
     Task<(bool Success, string Message)> UpdateAsync(int id, UpdateBookDto dto);
 
     Task<(bool Success, string Message)> DeleteAsync(int id);
+
+    /// <summary>
+    /// Retrieves books with search, filtering, sorting, and pagination.
+    /// </summary>
+    Task<PagedResultDto<BookDto>> GetPagedAsync(BookQueryDto query);
 }

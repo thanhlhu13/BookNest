@@ -18,6 +18,23 @@
         <div class="card shadow-sm">
             <div class="card-body p-4">
 
+                <div class="text-center mb-4">
+                    @if (!string.IsNullOrWhiteSpace(Model.CoverImageUrl))
+                    {
+                        <img src="@Model.CoverImageUrl"
+                             alt="@Model.Title"
+                             class="img-fluid rounded shadow-sm"
+                             style="max-height: 300px; max-width: 220px; object-fit: contain;" />
+                    }
+                    else
+                    {
+                        <div class="text-muted py-5">
+                            <i class="bi bi-image" style="font-size: 3rem;"></i>
+                            <p class="mb-0">No cover image available</p>
+                        </div>
+                    }
+                </div>
+
                 <h3 class="mb-3">@Model.Title</h3>
 
                 <dl class="row">

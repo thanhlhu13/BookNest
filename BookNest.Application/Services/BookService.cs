@@ -1,5 +1,6 @@
 ﻿
 using BookNest.Application.DTOs.Book;
+using BookNest.Application.DTOs.Common;
 using BookNest.Application.Interfaces;
 using BookNest.Domain.Entities;
 
@@ -63,6 +64,7 @@ public class BookService : IBookService
             Publisher = NormalizeOptionalText(dto.Publisher),
             PublishedDate = dto.PublishedDate,
             Language = NormalizeOptionalText(dto.Language),
+            CoverImageUrl = dto.CoverImageUrl,
             CategoryId = dto.CategoryId,
             IsActive = true,
             CreatedAt = DateTime.UtcNow
@@ -107,6 +109,13 @@ public class BookService : IBookService
         book.PublishedDate = dto.PublishedDate;
         book.Language = NormalizeOptionalText(dto.Language);
         book.CategoryId = dto.CategoryId;
+
+        // Update the cover image only when a new image is provided.
+        if (!string.IsNullOrWhiteSpace(dto.CoverImageUrl))
+        {
+            book.CoverImageUrl = dto.CoverImageUrl;
+        }
+
         book.IsActive = dto.IsActive;
         book.UpdatedAt = DateTime.UtcNow;
 
@@ -165,4 +174,31 @@ public class BookService : IBookService
             ? null
             : normalized;
     }
+
+
+    /// <summary>
+    /// Retrieves books with search, filtering, sorting, and pagination.
+    /// </summary>
+    public async Task<PagedResultDto<BookDto>> GetPagedAsync(BookQueryDto query)
+    {
+        // Ensure valid pagination values.
+        query.PageNumber = Math.Max(1, query.PageNumber);
+        query.PageSize = Math.Clamp(query.PageSize, 1, 100);
+
+        // Get paginated books from repository.
+        var (books, totalCount) = await _repository.GetPagedAsync(query);
+
+        // Map entities to DTOs.
+        var bookDtos = books.Select(MapToDto).ToList();
+
+        // Return paginated result.
+        return new PagedResultDto<BookDto>
+        {
+            Items = bookDtos,
+            PageNumber = query.PageNumber,
+            PageSize = query.PageSize,
+            TotalCount = totalCount
+        };
+    }
+
 }

@@ -1,4 +1,5 @@
 ﻿
+using BookNest.Application.DTOs.Book;
 using BookNest.Domain.Entities;
 
 namespace BookNest.Application.Interfaces;
@@ -21,4 +22,10 @@ public interface IBookRepository
     Task<bool> ExistsByISBNAsync(string isbn, int? excludeId = null);
 
     Task SaveChangesAsync();
+
+    /// <summary>
+    /// Retrieves books using search, filtering, sorting, and pagination.
+    /// </summary>
+    Task<(IEnumerable<Book> Items, int TotalCount)> GetPagedAsync(
+        BookQueryDto query);
 }

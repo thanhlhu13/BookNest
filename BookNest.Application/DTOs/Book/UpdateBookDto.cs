@@ -32,4 +32,9 @@ public class UpdateBookDto
     public int CategoryId { get; set; }
 
     public bool IsActive { get; set; } = true;
+
+    /// <summary>
+    /// Gets or sets the relative URL of the book cover image.
+    /// </summary>
+    public string? CoverImageUrl { get; set; }
 }
